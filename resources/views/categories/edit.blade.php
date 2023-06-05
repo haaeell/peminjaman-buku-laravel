@@ -1,33 +1,33 @@
 @extends ('layouts.dashboard')
 
 @section('content')
-@section('judul', 'Edit Roles')
+@section('judul', 'Edit categories')
     <div class="row">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
-                    <form id="myForm" action="{{ route('roles.update', $role->id) }}" method="POST" class="needs-validation" novalidate>
+                    <form id="myForm" action="{{ route('categories.update', $category->id) }}" method="POST" class="needs-validation" novalidate>
                         @csrf
                         @method('PUT')
                         <div class="card-header">
-                            <h4>Edit Role</h4>
+                            <h4>Edit Kategori</h4>
                         </div>
                         <div class="card-body">
                             <div class="form-group row">
                                 <label>Nama</label>
-                                <input type="text" name="name" value="{{$role->name}}" class="form-control" required>
+                                <input type="text" name="name" value="{{$category->name}}" class="form-control @error('name') is-invalid @enderror" required>
                                 <div class="invalid-feedback">
+                                    {{$errors->first('name')}}
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label>Deskripsi</label>
-                                <input type="text" name="description" value="{{$role->description}} " class="form-control" required>
-                                <div class="invalid-feedback">
-                                </div>
+                                <label>Color</label>
+                                <input type="color" name="color" value="{{$category->color}}" class="form-control @error('color') is-invalid @enderror">
+
                             </div>
                         </div>
                         <div class="card-footer text-right">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </form>                
                 </div>
@@ -35,4 +35,3 @@
         </div>
     </div>
 @endsection
-

@@ -333,5 +333,35 @@
 } );
 
   </script>
+  
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+<script>
+    $('button.delete-button').click(function(event) {
+        event.preventDefault();
+
+        const form = $(this).closest('form');
+        const name = $(this).data('name');
+
+        Swal.fire({
+            title: 'Yakin mau hapus role ' + name + '?',
+            icon: 'warning',
+            showCancelButton: true,
+            cancelButtonText: 'cancel',
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#868e96',
+            confirmButtonText: 'Hapus'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+                Swal.fire('Terhapus!', name + ' berhasil dihapus.', 'success');
+            } else {
+                Swal.fire('Batal', name + ' gajadi dihapus.', 'error');
+            }
+        });
+    });
+</script>
+  
 </body>
 </html>

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -18,7 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('users', UserController::class);
+Route::middleware('auth')->group(function () {
+    
+    Route::resource('users', UserController::class);
+    Route::resource('roles', RoleController::class);
+});
 
 
 Auth::routes();

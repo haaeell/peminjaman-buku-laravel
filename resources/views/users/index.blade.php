@@ -37,22 +37,25 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Admin 1  
+                  @foreach ($users as $user)
+                  <tr>
+                    <td>{{$user->id}}</td>
+                    <td>{{$user->name}} 
+                    </td>
+                    <td>{{$user->email}} 
+                    </td>
+                    <td>
+                      <img alt="image" src="{{asset('stisla/assets')}}/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Wildan Ahdian">
+                    </td>
+                    <td><div class="badge badge-success">Admin</div></td>
+                    <td>
+                        <a href="#" class="btn btn-info">Detail</a>
+                        <a href="#" class="btn btn-warning">Edit</a>
+                        <a href="#" class="btn btn-danger">Hapus</a>
                   </td>
-                  <td>Admin@gmail.com  
-                  </td>
-                  <td>
-                    <img alt="image" src="{{asset('stisla/assets')}}/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Wildan Ahdian">
-                  </td>
-                  <td><div class="badge badge-success">Admin</div></td>
-                  <td>
-                      <a href="#" class="btn btn-info">Detail</a>
-                      <a href="#" class="btn btn-warning">Edit</a>
-                      <a href="#" class="btn btn-danger">Hapus</a>
-                </td>
-                </tr>
+                  </tr>
+                      
+                  @endforeach
               </tbody>
             </table>
           </div>

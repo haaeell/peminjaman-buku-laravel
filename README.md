@@ -20,7 +20,12 @@
 
     ![blog](dokumentasi/buku.png)
 
-1. Halaman Table Kategori (admin)
+2. Halaman Table Kategori (admin)
 
     ![blog](dokumentasi/kategori.png)
+
+3. Halaman Table Kategori (admin)
+
+    ![blog](dokumentasi/tambahbuku.png)
+
 

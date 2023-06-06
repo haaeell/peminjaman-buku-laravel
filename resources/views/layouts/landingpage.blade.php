@@ -123,20 +123,23 @@
                 @endforeach
             </ul>
         </li>
+        <li class="nav-item ">
+            <a class="nav-link nav-huy " href="#blog">Tentang kami </a>
+          </li>
         
-        
+        @auth
           <li class="nav-item ">
             <a class="nav-link nav-huy " href="#blog">Riwayat </a>
           </li>
+          @endauth
         </ul>
-        
 
         <ul class="navbar-nav ms-auto">
           
           @if (Route::has('login'))
             
                 @auth
-                @if (Auth::user()->role->name == 'admin' || Auth::user()->role->name == 'contributor' )
+                @if (Auth::user()->role_id == '1' )
                    <li class="nav-item">
                   <a class="btn btn-login" href="{{ url('admin/blogs') }}">Dashboard X {{Auth::user()->role->name}}  <i class="bi bi-box-arrow-in-right"></i></a>
                 </li> 

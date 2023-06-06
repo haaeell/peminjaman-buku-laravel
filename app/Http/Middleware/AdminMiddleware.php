@@ -16,7 +16,7 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check()) {
+        if (Auth::check() && Auth::user()->role_id == '1') {
             return $next($request);
         }
         return redirect('/');

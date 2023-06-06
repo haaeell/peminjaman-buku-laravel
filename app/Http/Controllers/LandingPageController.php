@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
@@ -13,7 +14,9 @@ class LandingPageController extends Controller
     public function index()
     {
         $books = Book::with('category')->get();
-        return view('welcome', compact('books'));
+        $categories = Category::all();
+
+        return view('welcome', compact('books','categories'));
     }
 
     /**
@@ -35,10 +38,13 @@ class LandingPageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
+    public function show($id)
+{
+    $book = Book::findOrFail($id);
+        $categories = Category::all();
+    return view('show', compact('book','categories'));
+}
+
 
     /**
      * Show the form for editing the specified resource.

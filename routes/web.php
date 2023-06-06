@@ -20,6 +20,8 @@ use App\Http\Controllers\LandingPageController;
 
 
 Route::resource('/', LandingPageController::class);
+Route::get('/landingpage/{id}', [LandingPageController::class, 'show'])->name('landingpage.show');
+
 
 
 Route::middleware('auth', 'admin')->group(function () {

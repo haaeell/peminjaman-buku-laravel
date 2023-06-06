@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Book;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class LandingPageController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    
     public function index()
     {
-        $users = User::all();
-        return view('users.index', compact('users'));
+        $books = Book::with('category')->get();
+        return view('welcome', compact('books'));
     }
 
     /**
@@ -39,12 +38,6 @@ class UserController extends Controller
     public function show(string $id)
     {
         //
-    }
-
-    public function detail()
-    {
-        //
-        return view('users.detail');
     }
 
     /**

@@ -45,8 +45,7 @@ class RoleController extends Controller
 
         $role = Role::create($request->all());
 
-        return redirect()->route('roles.index')
-            ->with('success', 'Berhasil menambahkan role');
+        return redirect()->route('roles.index')->with('success', 'Berhasil menambahkan role');
     }
 
     /**

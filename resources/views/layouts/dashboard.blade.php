@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>General Dashboard &mdash; Stisla</title>
+  <title>Buku ini &mdash; Haikal</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -299,6 +299,21 @@
       </div>
     </div>
   </div>
+  <script>
+      function previewImage(){
+            const image = document.querySelector('#gambar');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+            
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent){
+                imgPreview.src = oFREvent.target.result;
+            }
+          }
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
@@ -345,7 +360,7 @@
         const name = $(this).data('name');
 
         Swal.fire({
-            title: 'Yakin mau hapus role ' + name + '?',
+            title: 'Yakin mau hapus ' + name + '?',
             icon: 'warning',
             showCancelButton: true,
             cancelButtonText: 'cancel',
@@ -354,8 +369,8 @@
             confirmButtonText: 'Hapus'
         }).then((result) => {
             if (result.isConfirmed) {
-                form.submit();
                 Swal.fire('Terhapus!', name + ' berhasil dihapus.', 'success');
+                form.submit();
             } else {
                 Swal.fire('Batal', name + ' gajadi dihapus.', 'error');
             }

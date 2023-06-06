@@ -2,6 +2,7 @@
 
 @section('content')
 @section('judul', 'Tabel Buku')
+@section('title', 'Tabel Buku')
 
 @if (session('success'))
     <div class="alert alert-success alert-dismissible show fade">

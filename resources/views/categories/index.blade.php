@@ -2,6 +2,7 @@
 
 @section('content')
 @section('judul', 'Tabel Kategori')
+@section('title', 'Tabel Kategori')
 @if(session('success'))
 <div class="alert alert-success alert-dismissible show fade">
     <div class="alert-body">

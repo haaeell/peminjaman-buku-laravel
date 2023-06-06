@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Buku ini &mdash; Haikal</title>
+  <title>@yield('title') &mdash; Bukuku</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -260,17 +260,24 @@
           <ul class="sidebar-menu">
               <li class="menu-header">Dashboard</li>
               
-              <li><a class="nav-link" href="/admin/data-pendaftar"><i class="bi bi-people-fill"></i> <span>Dashboard</span></a></li>
+              <li class="{{ request()->is('home') ? 'active' : '' }}">
+                  <a href="{{route('home')}}" class="nav-link active"><i class="bi bi-people-fill "></i> <span>Dashboard</span></a>
+                </li>
               <li class="menu-header">Data Master</li>
-              <li class="dropdown active">
+              <li class="dropdown {{ request()->is('books*') || request()->is('categories*') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Kelola Buku</span></a>
                 <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="index-0.html">Data Buku</a></li>
-                  <li class=active><a class="nav-link" href="index.html">Kategori</a></li>
+                    <li class="{{ request()->is('books*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('books.index') }}">Data Buku</a>
+                    </li>
+                    <li class="{{ request()->is('categories*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('categories.index') }}">Kategori</a>
+                    </li>
                 </ul>
-              </li>
+            </li>
+            
               <li class="menu-header">Transaksi</li>
-              <li class="dropdown active">
+              <li class="dropdown ">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Transasksi Buku</span></a>
                 <ul class="dropdown-menu">
                   <li><a class="nav-link" href="index-0.html">Peminjaman</a></li>

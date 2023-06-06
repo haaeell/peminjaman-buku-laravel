@@ -3,6 +3,7 @@
 
 @section('content')
 @section('judul','Dashboard Admin')
+@section('title','Dashboard Admin')
 
 <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
@@ -12,10 +13,10 @@
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h4>Total Admin</h4>
+            <h4>Total Buku</h4>
           </div>
           <div class="card-body">
-            10
+            {{$books->count()}}
           </div>
         </div>
       </div>
@@ -27,10 +28,10 @@
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h4>News</h4>
+            <h4>Kategori</h4>
           </div>
           <div class="card-body">
-            42
+            {{$categories->count()}}
           </div>
         </div>
       </div>
@@ -42,7 +43,7 @@
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h4>Reports</h4>
+            <h4>Peminjaman</h4>
           </div>
           <div class="card-body">
             1,201
@@ -57,7 +58,7 @@
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h4>Online Users</h4>
+            <h4>Pengembalian</h4>
           </div>
           <div class="card-body">
             47
@@ -70,66 +71,42 @@
     <div class="col-md-8">
       <div class="card">
         <div class="card-header">
-          <h4>Invoices</h4>
+          <h4>2 Data Buku Terbaru</h4>
           <div class="card-header-action">
-            <a href="#" class="btn btn-danger">View More <i class="fas fa-chevron-right"></i></a>
+            <a href="{{route('books.index')}}" class="btn btn-danger">Data buku <i class="fas fa-chevron-right"></i></a>
           </div>
         </div>
         <div class="card-body p-0">
           <div class="table-responsive table-invoice">
             <table class="table table-striped">
+              
               <tr>
-                <th>Invoice ID</th>
-                <th>Customer</th>
-                <th>Status</th>
-                <th>Due Date</th>
-                <th>Action</th>
+                <th>No</th>
+                                <th>Judul</th>
+                                <th>Pengarang</th>
+                                <th>Tahun</th>
+                                <th>Kategori</th>
+                                <th>Gambar</th>
+                                <th>Penerbit</th>
+                                <th>Deskripsi</th>
               </tr>
+              @foreach ($books as $book)
               <tr>
-                <td><a href="#">INV-87239</a></td>
-                <td class="font-weight-600">Kusnadi</td>
-                <td><div class="badge badge-warning">Unpaid</div></td>
-                <td>July 19, 2018</td>
-                <td>
-                  <a href="#" class="btn btn-primary">Detail</a>
-                </td>
+                <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $book->title }}</td>
+                                    <td>{{ $book->author }}</td>
+                                    <td>{{ $book->year }}</td>
+                                    <td>
+                                      <div class="badge" style="background-color: {{ $book->category->color }}; color:white;"> {{ $book->category->name }}
+                                      </div>
+                                    </td>
+                                    <td> <img src="{{ asset('/public/posts/' . $book->image) }}" style="width: 80px;"
+                                      alt=""></td>
+                                      <td>{{ $book->publisher }}</td>
+                                      <td>{{ Str::limit($book->description, 10) }}</td>
               </tr>
-              <tr>
-                <td><a href="#">INV-48574</a></td>
-                <td class="font-weight-600">Hasan Basri</td>
-                <td><div class="badge badge-success">Paid</div></td>
-                <td>July 21, 2018</td>
-                <td>
-                  <a href="#" class="btn btn-primary">Detail</a>
-                </td>
-              </tr>
-              <tr>
-                <td><a href="#">INV-76824</a></td>
-                <td class="font-weight-600">Muhamad Nuruzzaki</td>
-                <td><div class="badge badge-warning">Unpaid</div></td>
-                <td>July 22, 2018</td>
-                <td>
-                  <a href="#" class="btn btn-primary">Detail</a>
-                </td>
-              </tr>
-              <tr>
-                <td><a href="#">INV-84990</a></td>
-                <td class="font-weight-600">Agung Ardiansyah</td>
-                <td><div class="badge badge-warning">Unpaid</div></td>
-                <td>July 22, 2018</td>
-                <td>
-                  <a href="#" class="btn btn-primary">Detail</a>
-                </td>
-              </tr>
-              <tr>
-                <td><a href="#">INV-87320</a></td>
-                <td class="font-weight-600">Ardian Rahardiansyah</td>
-                <td><div class="badge badge-success">Paid</div></td>
-                <td>July 28, 2018</td>
-                <td>
-                  <a href="#" class="btn btn-primary">Detail</a>
-                </td>
-              </tr>
+              @endforeach
+              
             </table>
           </div>
         </div>
@@ -159,11 +136,11 @@
                   <div class="media-title">oPhone S9 Limited</div>
                   <div class="mt-1">
                     <div class="budget-price">
-                      <div class="budget-price-square bg-primary" data-width="64%"></div>
+                      <div class="budget-price-square bg-primary" data-width="10%"></div>
                       <div class="budget-price-label">$68,714</div>
                     </div>
                     <div class="budget-price">
-                      <div class="budget-price-square bg-danger" data-width="43%"></div>
+                      <div class="budget-price-square bg-danger" data-width="80%"></div>
                       <div class="budget-price-label">$38,700</div>
                     </div>
                   </div>

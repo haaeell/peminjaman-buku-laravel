@@ -109,7 +109,7 @@
             <a class="nav-link active nav-huy" aria-current="page" href="/">Home </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link nav-huy " href="#blog">Daftar Buku</a>
+            <a class="nav-link nav-huy " href="{{route('landingpage.create')}}">Daftar Buku</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -141,7 +141,7 @@
                 @auth
                 @if (Auth::user()->role_id == '1' )
                    <li class="nav-item">
-                  <a class="btn btn-login" href="{{ url('admin/blogs') }}">Dashboard X {{Auth::user()->role->name}}  <i class="bi bi-box-arrow-in-right"></i></a>
+                  <a class="btn btn-login" href="{{ url('home') }}">Dashboard X {{Auth::user()->name}}  <i class="bi bi-box-arrow-in-right"></i></a>
                 </li> 
                 @else 
                 <form  action="{{ route('logout') }}" method="POST" >

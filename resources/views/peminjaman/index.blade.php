@@ -64,7 +64,7 @@
                                             <a href="{{ route('peminjaman.edit', $peminjaman->id) }}"
                                                 class="btn btn-warning mr-1">pengembalian</a>
                                             <form method="POST"
-                                                action="{{ route('categories.destroy', $peminjaman->id) }}">
+                                                action="{{ route('peminjaman.destroy', $peminjaman->id) }}">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-danger delete-button"

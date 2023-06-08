@@ -92,7 +92,7 @@ class PeminjamanController extends Controller
 
         if ($tanggalPengembalian->greaterThan($peminjaman->tanggal_wajib_kembali)) {
             $selisihHari = $tanggalPengembalian->diffInDays($peminjaman->tanggal_wajib_kembali);
-            $peminjaman->denda = $selisihHari * 1000; // Contoh: Denda Rp 1.000 per hari terlambat
+            $peminjaman->denda = $selisihHari * 1000; //Denda Rp 1.000 per hari terlambat
         }
 
         $peminjaman->save();
@@ -103,10 +103,13 @@ class PeminjamanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
+    public function destroy($id)
+{
+    $peminjaman = Peminjaman::find($id);
+    $peminjaman->delete();
+
+    return redirect()->route('peminjaman.index')->with('success', 'Berhasil hapus peminjaman');
+}
     public function approvePeminjaman($id)
 {
 

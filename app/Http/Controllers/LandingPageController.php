@@ -24,7 +24,10 @@ class LandingPageController extends Controller
      */
     public function create()
     {
-        //
+        $books = Book::with('category')->get();
+        $categories = Category::all();
+
+        return view('landingpage.daftarBuku', compact('books','categories'));
     }
 
     /**
@@ -42,7 +45,7 @@ class LandingPageController extends Controller
 {
     $book = Book::findOrFail($id);
         $categories = Category::all();
-    return view('show', compact('book','categories'));
+    return view('landingpage.show', compact('book','categories'));
 }
 
 

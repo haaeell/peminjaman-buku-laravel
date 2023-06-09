@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class LandingPageController extends Controller
 {
@@ -38,11 +39,27 @@ class LandingPageController extends Controller
      */
     public function store(Request $request)
     {
+        // Ambil ID pengguna saat ini
+    $userId = Auth::user()->id;
+    
+
+    // Ambil pengguna saat ini berdasarkan ID
+    $user = User::find($userId);
+    
+
+    // Tentukan batasan jumlah maksimum peminjaman
+    $maxPeminjaman = 3;
+
+    // Lakukan validasi
+    if ($user->peminjamanCount() >= $maxPeminjaman) {
+        // Jika melebihi batas, kembalikan pesan kesalahan
+        return back()->with('error', 'Anda telah mencapai batas maksimum peminjaman buku.');
+}
         $request->validate([
             'user_id' => 'required',
             'book_id' => 'required',
             'tanggal_pinjam' => 'required|date',
-            'tanggal_pengembalian' => 'required|date',
+            'tanggal_pengembalian' => 'required|date|after_or_equal:tanggal_pinjam',
         ]);
 
         $tanggalPinjam = Carbon::parse($request->tanggal_pinjam);
@@ -56,8 +73,7 @@ class LandingPageController extends Controller
         $peminjaman->tanggal_pinjam = $tanggalPinjam;
         $peminjaman->tanggal_wajib_kembali = $tanggalWajibKembali;
         $peminjaman->save();
-
-        return redirect()->route('landingpage.index')->with('success', 'Pengajuan berhasil , tunggu admin konfirmasi lewat email ya!');
+        return back()->with('success', 'Pengajuan berhasil , tunggu admin konfirmasi lewat email ya!');
     }
 
     /**

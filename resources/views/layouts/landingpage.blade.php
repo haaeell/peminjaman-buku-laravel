@@ -12,6 +12,9 @@
 />
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+
+
 </head>
 <style>
    .swiper {
@@ -129,7 +132,7 @@
         
         @auth
           <li class="nav-item ">
-            <a class="nav-link nav-huy " href="#blog">Riwayat </a>
+            <a class="nav-link nav-huy " href="{{route('riwayat.index')}}">Riwayat </a>
           </li>
           @endauth
         </ul>
@@ -166,11 +169,20 @@
 
  @yield('content')
 
-    
-
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ 
+ 
+  
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+ <script>
+  $(document).ready( function () {
+  $('#table_id').DataTable();
+} );
+
+</script>
 <script>
     var swiper = new Swiper(".mySwiper", {
       loop: true,

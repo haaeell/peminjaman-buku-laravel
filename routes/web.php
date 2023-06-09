@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\LandingPageController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\PengembalianController;
 
 Route::resource('/', LandingPageController::class);
 Route::resource('landingpage', LandingPageController::class);
+Route::resource('riwayat', RiwayatController::class);
 
 
 

@@ -4,7 +4,8 @@
 @section('judul', 'Tabel Peminjaman')
 @section('title', 'Tabel Peminjaman')
 
-<div class="row">
+
+<div class="row d-flex justify-content-center">
     <div class="col-md-3">
         <div class="alert alert-danger">
            data yang belum disetujui: <strong>{{ $belumDisetujuiCount }}</strong>

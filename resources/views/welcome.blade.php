@@ -13,6 +13,16 @@
                 </div>
             </div>
         @endif
+        @if (session('error'))
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-8">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Hai {{ Auth::user()->name }}</strong> {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+        @endif
         <div class="text-center">
 
             <h1>LANDING PAGE</h1>

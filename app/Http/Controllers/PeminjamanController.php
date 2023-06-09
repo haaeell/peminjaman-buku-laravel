@@ -18,8 +18,9 @@ class PeminjamanController extends Controller
     public function index()
     {
         $peminjamans = Peminjaman::all();
+        $belumDisetujuiCount = Peminjaman::where('approved', 0)->count();
 
-        return view('peminjaman.index', compact('peminjamans'));
+        return view('peminjaman.index', compact('peminjamans','belumDisetujuiCount'));
     }
 
     /**

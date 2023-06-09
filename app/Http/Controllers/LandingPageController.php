@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\User;
 use App\Models\Category;
+use App\Models\Peminjaman;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class LandingPageController extends Controller
 {
@@ -35,7 +38,26 @@ class LandingPageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'user_id' => 'required',
+            'book_id' => 'required',
+            'tanggal_pinjam' => 'required|date',
+            'tanggal_pengembalian' => 'required|date',
+        ]);
+
+        $tanggalPinjam = Carbon::parse($request->tanggal_pinjam);
+        $tanggalKembali = Carbon::parse($request->tanggal_pengembalian);
+        $tanggalWajibKembali = $tanggalPinjam->copy()->addWeek();
+
+        $peminjaman = new Peminjaman();
+        $peminjaman->user_id = $request->user_id;
+        $peminjaman->book_id = $request->book_id;
+        $peminjaman->tanggal_pengembalian = $tanggalKembali;
+        $peminjaman->tanggal_pinjam = $tanggalPinjam;
+        $peminjaman->tanggal_wajib_kembali = $tanggalWajibKembali;
+        $peminjaman->save();
+
+        return redirect()->route('landingpage.index')->with('success', 'Pengajuan berhasil , tunggu admin konfirmasi lewat email ya!');
     }
 
     /**
@@ -44,8 +66,9 @@ class LandingPageController extends Controller
     public function show($id)
 {
     $book = Book::findOrFail($id);
+    $user = User::all();
         $categories = Category::all();
-    return view('landingpage.show', compact('book','categories'));
+    return view('landingpage.show', compact('book','categories','user'));
 }
 
 

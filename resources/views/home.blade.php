@@ -219,11 +219,11 @@
           <div class="card-footer pt-3 d-flex justify-content-center">
             <div class="budget-price justify-content-center">
               <div class="budget-price-square bg-primary" data-width="20"></div>
-              <div class="budget-price-label">Selling Price</div>
+              <div class="budget-price-label">Selling  </div>
             </div>
             <div class="budget-price justify-content-center">
               <div class="budget-price-square bg-danger" data-width="20"></div>
-              <div class="budget-price-label">Budget Price</div>
+              <div class="budget-price-label">Budget</div>
             </div>
           </div>
         </div>

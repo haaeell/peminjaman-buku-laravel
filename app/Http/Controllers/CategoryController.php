@@ -60,6 +60,10 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
+        if ($category->books()->exists()) {
+            return redirect()->route('categories.index')->with('error', 'Tidak dapat menghapus kategori karena terdapat buku terkait.');;
+        }
+        
         $category->delete();
 
         return redirect()->route('categories.index')

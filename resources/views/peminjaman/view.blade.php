@@ -7,6 +7,7 @@
         <div class="row">
             <div class="col-12 col-md-12 col-lg-12">
                 <div class="card profile-widget">
+                    <p>hahahah</p>
                     <div class="profile-widget-header">
                         <img alt="image" src="{{ asset('/public/posts/' . $book->image) }}" w="100"
                             class="rounded-circle profile-widget-picture">

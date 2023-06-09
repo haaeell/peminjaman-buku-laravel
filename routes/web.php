@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\PengembalianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,7 @@ Route::middleware('auth', 'admin')->group(function () {
     Route::resource('categories', CategoryController::class);
     Route::resource('books', BookController::class);
     Route::resource('peminjaman', PeminjamanController::class);
+    Route::resource('pengembalian', PengembalianController::class);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::post('/peminjaman/{id}/approve', [PeminjamanController::class, 'approvePeminjaman'])->name('peminjaman.approve');
 

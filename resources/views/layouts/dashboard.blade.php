@@ -280,13 +280,17 @@
               <li class="dropdown ">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Transasksi Buku</span></a>
                 <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="index-0.html">Peminjaman</a></li>
-                  <li class=active><a class="nav-link" href="index.html">Pengembalian</a></li>
+                    <li class="{{ request()->is('peminjaman*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('peminjaman.index') }}">Peminjaman</a>
+                    </li>
+                    <li class="{{ request()->is('pengembalian*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('pengembalian.index') }}">Pengembalian</a>
+                    </li>
                 </ul>
               </li>
               <li><a class="nav-link" href="blank.html"><i class="far fa-user"></i> <span>Data User</span></a></li>
               <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-                <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
+                <a href="/" class="btn btn-primary btn-lg btn-block btn-icon-split">
                   <i class="fas fa-rocket"></i> LandingPage
                 </a>
               </div> 
@@ -358,6 +362,7 @@
   
 <!-- SweetAlert2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@yield('script')
   
 <script>
     $('button.delete-button').click(function(event) {
@@ -376,7 +381,6 @@
             confirmButtonText: 'Hapus'
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire('Terhapus!', name + ' berhasil dihapus.', 'success');
                 form.submit();
             } else {
                 Swal.fire('Batal', name + ' gajadi dihapus.', 'error');

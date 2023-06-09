@@ -144,6 +144,7 @@ class BookController extends Controller
         $path = 'public/posts';
         Storage::delete($path . '/' . $book->image);
     }
+    
 
     $book->delete();
 

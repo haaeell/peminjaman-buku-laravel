@@ -1,7 +1,9 @@
 @extends('layouts.landingpage')
 
 @section('content')
+
 <div style="height: 100px"></div>
+
 <section class="mt-5">
     <div class="container mt-3">
         <div class="card p-5">

@@ -32,9 +32,16 @@
                         <li>Penerbit: {{ $book->publisher }}</li>
                     </ul>
                     <a href="{{ route('books.index') }}" class="btn btn-primary">Back</a>
+                    @if (Auth::user() != null)
                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalPinjam">
                         Pinjam Buku
                     </button>
+                    @else
+                    <button type="button" class="btn btn-success" onclick="alert('anda belum login silahkan login terlebih dahulu')">
+                        Pinjam Buku
+                    </button>
+                    @endif
+                    
                 </div>
             </div>
         </div>
@@ -59,7 +66,7 @@
                             </ul>
                         </div>
                     @endif
-    
+    @auth
                     <form action="{{ route('landingpage.store') }}" method="POST">
                         @csrf
                         <div class="mb-3">
@@ -89,6 +96,7 @@
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
                 </form>
+                @endauth
             </div>
         </div>
     </div>

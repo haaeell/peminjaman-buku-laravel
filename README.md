@@ -16,16 +16,28 @@
 --
 
 ## Dokumentasi 
-1. Halaman Table Books (admin)
+1. Landingpage (sementara)
+
+    ![blog](dokumentasi/landingpage.png)
+
+2. Halaman Table Books (admin)
 
     ![blog](dokumentasi/buku.png)
 
-2. Halaman Table Kategori (admin)
+3. Halaman Table Kategori (admin)
 
     ![blog](dokumentasi/kategori.png)
 
-3. Halaman Table Kategori (admin)
+4. Halaman Table Kategori (admin)
 
     ![blog](dokumentasi/tambahbuku.png)
+5. Halaman Table Peminjaman (admin)
+
+    ![blog](dokumentasi/peminjaman.png)
+    
+5. Halaman Table Pengembalian (admin)
+
+    ![blog](dokumentasi/pengembalian.png)
+
 
 

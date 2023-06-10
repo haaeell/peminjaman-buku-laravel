@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;800&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+section.hero {
+    background: linear-gradient(to right, #94c0eb, #ffffff);
+}
+
+.title{
+    color: #124472;
+}
+.swiper {
+    width: 100%;
+  }
+
+  .swiper-slide {
+    width: 300px;
+  }
+  .swiper-slide:not(.swiper-slide-active) {
+    filter: blur(2px); /* Atur tingkat blur sesuai keinginan */
+    box-shadow: none; /* Hilangkan bayangan */
+  }
+  .swiper-container {
+    position: relative;
+  }
+  
+  .swiper-button-next,
+  .swiper-button-prev {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    color: #000;
+    cursor: pointer;
+  }
+  
+  .swiper-button-next {
+    right: 10px;
+  }
+  
+  .swiper-button-prev {
+    left: 10px;
+  }
+
+
+  .btn-register {
+  padding: 12px 30px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  background-color: #124472;
+  color: #fff;
+}
+
+.btn-register:hover {
+    background-color: #155188;
+    color: #fff;
+  }
+
+.btn-book {
+    padding: 10px 28px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    border: 2px solid #124472;
+    color: #124472;
+    background-image: linear-gradient(to right, #124472 0%, #124472 50%, transparent 50%, transparent 100%);
+    background-size: 200% 100%;
+    background-position: right center;
+    transition: background-position 0.5s ease-in-out;
+  }
+  
+  .btn-book:hover {
+    background-position: left center;
+    color: white;
+  }  
+
+.btn-login{
+  padding: 12px 30px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  
+  
+}
+.navbar{
+    
+    background: linear-gradient(to right, #94c0eb, #ffffff);
+}
+
+.navbar li .btn-login {
+  position: relative;
+  display: inline-block;
+}
+
+.navbar li .btn-login:after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -2px;
+  left: 25%;
+  background-color: #124472;
+  transition:  0.2s ease-in-out, left 0.2s ease-in-out;
+  transform: translateX(-50%);
+  
+}
+.navbar li .btn-login:hover:after {
+  width: 50%;
+  left: 50%;
+}
+
+.navbar li .nav-huy {
+  position: relative;
+  display: inline-block;
+}
+
+.navbar li .nav-huy:after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -2px;
+  left: 50%;
+  background-color: #000000;
+  transition:  0.2s ease-in-out, left 0.2s ease-in-out;
+  transform: translateX(-50%);
+  
+}
+.navbar li .nav-huy:hover:after {
+  width: 50%;
+  left: 50%;
+}
+
+.badge1{
+    color: #124472;
+    background-color: #82b7ec;
+    font-weight: 600;
+    padding: 8px 10px;
+    border-radius: 8px;
+}
+
+/* alasam */
+.alasan{
+    background-color: #fff;
+    margin-top: -100px;
+    border-radius: 20px;
+}
+.icon{
+    font-size: 38px;
+    color: #124472;
+}
+
+/* Buku */
+.image-book{
+    border-radius: 16px;
+    
+    max-height: 400px; /* Sesuaikan tinggi maksimum yang diinginkan */
+    object-fit: cover;
+}
+
+.isi-gambar{
+    background-color: white;
+    margin-top: -100px;
+    border-radius: 16px;
+
+
+}
+
+.card-book{
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    cursor: pointer;
+}
+.card-book:hover{
+    background-color: #b2d3f3;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    transition: .3s ease-in-out;
+}
+
+.nomer{
+    background-color: #124472;
+    color: white;
+    padding: 8px;
+    border-radius: 100%;
+    display: block;
+    margin-bottom: 8px;
+    width: 40px;
+}

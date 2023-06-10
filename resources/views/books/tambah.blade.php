@@ -86,6 +86,17 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="stok" class="col-sm-3 col-form-label">
+                            Stok Buku <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="number" id="stok" name="stok" class="form-control @error('stok') is-invalid @enderror">
+                            @error('stok')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="description" class="col-sm-3 col-form-label">
                             Deskripsi<span class="text-danger">*</span>
                         </label>

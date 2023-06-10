@@ -16,10 +16,12 @@ section.hero {
   }
 
   .swiper-slide {
-    width: 300px;
+    width: 250px;
   }
   .swiper-slide:not(.swiper-slide-active) {
-    filter: blur(2px); /* Atur tingkat blur sesuai keinginan */
+    width: 200px;
+    margin:0 20px;
+    filter:grayscale(); /* Atur tingkat blur sesuai keinginan */
     box-shadow: none; /* Hilangkan bayangan */
   }
   .swiper-container {

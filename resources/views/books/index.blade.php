@@ -32,6 +32,7 @@
                                 <th>Tahun</th>
                                 <th>Penerbit</th>
                                 <th>Kategori</th>
+                                <th>Stok</th>
                                 <th>Gambar</th>
                                 <th>Deskripsi</th>
                                 <th>Action</th>
@@ -49,6 +50,7 @@
                                         <div class="badge" style="background-color: {{ $book->category->color }}; color:white;"> {{ $book->category->name }}
                                         </div>
                                     </td>
+                                    <td>{{ $book->stok }}</td>
                                     <td> <img src="{{ asset('/public/posts/' . $book->image) }}" style="width: 80px;"
                                             alt=""></td>
                                     <td>{{ Str::limit($book->description, 10) }}</td>

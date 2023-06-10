@@ -15,10 +15,13 @@ class PengembalianController extends Controller
      */
     public function index()
 {
-    $pengembalians = Peminjaman::orderBy('id', 'desc')->get();
+    $pengembalians = Peminjaman::where('approved', true)
+        ->orderBy('id', 'desc')
+        ->get();
 
     return view('pengembalian.index', compact('pengembalians'));
 }
+
 
 
     /**
@@ -79,6 +82,9 @@ class PengembalianController extends Controller
         }
 
         $pengembalian->save();
+        $book = $pengembalian->book;
+        $book->stok += 1;
+        $book->save();
 
         return redirect()->route('pengembalian.index')->with('success', 'pengembalian updated successfully!');
     }

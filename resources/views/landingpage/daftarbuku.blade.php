@@ -6,7 +6,7 @@
 
 <section class="mt-5">
     <div class="container mt-3">
-        <div class="card p-5">
+        <div class="card border-0 p-5">
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
                     @foreach ($books as $item)

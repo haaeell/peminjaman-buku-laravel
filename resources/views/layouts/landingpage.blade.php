@@ -98,6 +98,8 @@
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@yield('script')
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
  <script>
   $(document).ready( function () {
@@ -108,7 +110,6 @@
 <script>
     var swiper = new Swiper(".mySwiper", {
       // loop: true,
-      effect:'coverflow',
       initialSlide: 2,
       grabCursor: true,
       centeredSlides: true,

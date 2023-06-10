@@ -40,40 +40,45 @@ class LandingPageController extends Controller
     public function store(Request $request)
     {
         // Ambil ID pengguna saat ini
-    $userId = Auth::user()->id;
+        $userId = Auth::user()->id;
     
-
-    // Ambil pengguna saat ini berdasarkan ID
-    $user = User::find($userId);
+        // Ambil pengguna saat ini berdasarkan ID
+        $user = User::find($userId);
     
-
-    // Tentukan batasan jumlah maksimum peminjaman
-    $maxPeminjaman = 3;
-
-    // Lakukan validasi
-    if ($user->peminjamanCount() >= $maxPeminjaman) {
-        // Jika melebihi batas, kembalikan pesan kesalahan
-        return back()->with('error', 'Anda telah mencapai batas maksimum peminjaman buku.');
-}
+        // Tentukan batasan jumlah maksimum peminjaman
+        $maxPeminjaman = 3;
+    
+        // Lakukan validasi
+        if ($user->peminjamanCount() >= $maxPeminjaman) {
+            // Jika melebihi batas, kembalikan pesan kesalahan
+            return back()->with('error', 'Anda telah mencapai batas maksimum peminjaman buku.');
+        }
+    
         $request->validate([
             'user_id' => 'required',
             'book_id' => 'required',
             'tanggal_pinjam' => 'required|date',
         ]);
-
+    
         $tanggalPinjam = Carbon::parse($request->tanggal_pinjam);
         $tanggalKembali = Carbon::parse($request->tanggal_pengembalian);
         $tanggalWajibKembali = $tanggalPinjam->copy()->addWeek();
-
+    
         $peminjaman = new Peminjaman();
         $peminjaman->user_id = $request->user_id;
         $peminjaman->book_id = $request->book_id;
         $peminjaman->tanggal_pinjam = $tanggalPinjam;
         $peminjaman->tanggal_wajib_kembali = $tanggalWajibKembali;
         $peminjaman->save();
-        return back()->with('success', 'Pengajuan berhasil , tunggu admin konfirmasi lewat email ya!');
+    
+        // Mengurangi stok buku
+        $book = Book::find($request->book_id);
+        $book->stok -= 1;
+        $book->save();
+    
+        return back()->with('success', 'Pengajuan berhasil, tunggu konfirmasi dari admin melalui email!');
     }
-
+    
     /**
      * Display the specified resource.
      */

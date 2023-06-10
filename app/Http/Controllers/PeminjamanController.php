@@ -16,12 +16,13 @@ class PeminjamanController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $peminjamans = Peminjaman::all();
-        $belumDisetujuiCount = Peminjaman::where('approved', 0)->count();
+{
+    $peminjamans = Peminjaman::orderBy('approved', 'asc')->get();
+    $belumDisetujuiCount = Peminjaman::where('approved', 0)->count();
 
-        return view('peminjaman.index', compact('peminjamans','belumDisetujuiCount'));
-    }
+    return view('peminjaman.index', compact('peminjamans', 'belumDisetujuiCount'));
+}
+
 
     /**
      * Show the form for creating a new resource.
@@ -38,13 +39,16 @@ class PeminjamanController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $request->validate([
-            'user_id' => 'required',
-            'book_id' => 'required',
-            'tanggal_pinjam' => 'required|date',
-        ]);
+{
+    $request->validate([
+        'user_id' => 'required',
+        'book_id' => 'required',
+        'tanggal_pinjam' => 'required|date',
+    ]);
 
+    $book = Book::find($request->book_id);
+
+    if ($book->stok > 0) {
         $tanggalPinjam = Carbon::parse($request->tanggal_pinjam);
         $tanggalWajibKembali = $tanggalPinjam->copy()->addWeek();
 
@@ -55,8 +59,17 @@ class PeminjamanController extends Controller
         $peminjaman->tanggal_wajib_kembali = $tanggalWajibKembali;
         $peminjaman->save();
 
+        // Mengurangi stok buku
+        $book->stok -= 1;
+        $book->save();
+
         return redirect()->route('peminjaman.index')->with('success', 'Peminjaman created successfully!');
+    } else {
+        return redirect()->route('peminjaman.index')->with('error', 'Stok buku habis!');
     }
+}
+
+
 
     /**
      * Display the specified resource.
@@ -97,6 +110,7 @@ class PeminjamanController extends Controller
         }
 
         $peminjaman->save();
+        
 
         return redirect()->route('peminjaman.index')->with('success', 'Peminjaman updated successfully!');
     }

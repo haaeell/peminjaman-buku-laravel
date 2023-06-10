@@ -31,43 +31,36 @@ class BookController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $messages = [
-            'required' => 'Kolom :attribute harus diisi.',
-            'image' => 'File :attribute harus berupa gambar.',
-            'mimes' => 'File :attribute harus memiliki format PNG, JPG, atau JPEG.',
-        ];
-        
-        $data = $request->validate([
-            'title' => 'required',
-            'image' => 'required|image|mimes:png,jpg,jpeg',
-            'publisher' => 'required',
-            'author' => 'required',
-            'category_id' => 'required',
-            'year' => 'required',
-            'description' => 'required',
-        ], $messages);
-        
+{
+    $messages = [
+        'required' => 'Kolom :attribute harus diisi.',
+        'image' => 'File :attribute harus berupa gambar.',
+        'mimes' => 'File :attribute harus memiliki format PNG, JPG, atau JPEG.',
+        'min' => 'Kolom :attribute harus memiliki nilai minimal :min.',
+    ];
 
-        $data = $request->all();
-        
-        
-        if ($image = $request->file('image')) {
-            $path = 'public/posts';
-            $namaGambar = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($path, $namaGambar);
-            $data['image'] = $namaGambar;
-        }
-        
-        $data = Book::create($data);
+    $data = $request->validate([
+        'title' => 'required',
+        'image' => 'required|image|mimes:png,jpg,jpeg',
+        'publisher' => 'required',
+        'author' => 'required',
+        'category_id' => 'required',
+        'year' => 'required',
+        'description' => 'required',
+        'stok' => 'required|integer|min:0'
+    ], $messages);
 
-
-        return redirect()->route('books.index')->with('success', 'Data Berhasil diTambah!');
-
+    if ($image = $request->file('image')) {
+        $path = 'public/posts';
+        $namaGambar = date('YmdHis') . "." . $image->getClientOriginalExtension();
+        $image->move($path, $namaGambar);
+        $data['image'] = $namaGambar;
     }
 
+    $book = Book::create($data);
 
-
+    return redirect()->route('books.index')->with('success', 'Data Berhasil diTambah!');
+}
 
 
     /**
@@ -99,6 +92,7 @@ class BookController extends Controller
         'required' => 'Kolom :attribute harus diisi.',
         'image' => 'File :attribute harus berupa gambar.',
         'mimes' => 'File :attribute harus memiliki format PNG, JPG, atau JPEG.',
+        'min' => 'Kolom :attribute harus memiliki nilai minimal :min.',
     ];
 
     $data = $request->validate([
@@ -109,6 +103,7 @@ class BookController extends Controller
         'category_id' => 'required',
         'year' => 'required',
         'description' => 'required',
+        'stok' => 'required|integer|min:0'
     ], $messages);
 
     $book = Book::findOrFail($id);

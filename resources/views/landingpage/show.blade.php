@@ -84,11 +84,8 @@
                         <div class="mb-3">
                             <label for="tanggal_peminjaman" class="form-label">Tanggal Peminjaman</label>
                             <input type="date" name="tanggal_pinjam" class="form-control" id="tanggal_peminjaman">
-                        </div>
-                        <div class="mb-3">
-                            <label for="tanggal_pengembalian" class="form-label">Tanggal Pengembalian</label>
-                            <input type="date" name="tanggal_pengembalian" class="form-control"
-                                id="tanggal_pengembalian">
+                            
+                        <span class="text-muted">*Batas waktu pengembalian adalah 1 minggu (7 hari) setelah tanggal peminjaman.</span>
                         </div>
                 </div>
                 <div class="modal-footer">

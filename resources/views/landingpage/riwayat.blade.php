@@ -26,8 +26,8 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Peminjam</th>
-                                    <th>Buku</th>
                                     <th>Gambar</th>
+                                    <th>Buku</th>
                                     <th>Tanggal Pinjam</th>
                                     <th>Tanggal Wajib Kembali</th>
                                     <th>Tanggal Pengembalian</th>
@@ -45,7 +45,10 @@
                                         <td>{{ $peminjaman->book->title }}</td>
                                         <td>{{ $peminjaman->tanggal_pinjam }}</td>
                                         <td>{{ $peminjaman->tanggal_wajib_kembali }}</td>
-                                        <td>{{ $peminjaman->tanggal_pengembalian }}</td>
+                                        <td>
+                                            {{ $peminjaman->tanggal_pengembalian ? $peminjaman->tanggal_pengembalian : 'Belum Dikembalikan' }}
+                                        </td>
+                                        
                                         <td>Rp. {{ number_format($peminjaman->denda, 0, ',', '.') }}</td>
                                         <td>
                                             

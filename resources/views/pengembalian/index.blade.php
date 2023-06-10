@@ -49,14 +49,25 @@
                                     </td>
                                     <td>{{ Carbon\Carbon::parse($pengembalian->tanggal_wajib_kembali)->formatLocalized('%d %B %Y') }}
                                     </td>
-                                    <td>{{ Carbon\Carbon::parse($pengembalian->tanggal_pengembalian)->formatLocalized('%d %B %Y') }}
+                                    <td>
+                                        @if ($pengembalian->tanggal_pengembalian)
+                                            {{ Carbon\Carbon::parse($pengembalian->tanggal_pengembalian)->formatLocalized('%d %B %Y') }}
+                                        @else
+                                            Belum Dikembalikan
+                                        @endif
                                     </td>
+                                    
 
                                     <td>Rp.{{ number_format($pengembalian->denda, 0, ',', '.') }}</td>
                                     <td>
                                         <div class="d-flex">
+                                            @if ($pengembalian->tanggal_pengembalian == null)
                                             <a href="{{ route('pengembalian.edit', $pengembalian->id) }}"
-                                                class="btn btn-warning mr-1">pengembalian</a>
+                                                class="btn btn-warning mr-1">pengembalian</a> 
+                                            @else
+                                            <span class="badge badge-success mr-1">Sudah Dikembalikan</span> 
+                                            @endif
+                                            
                                             <form method="POST"
                                                 action="{{ route('pengembalian.destroy', $pengembalian->id) }}">
                                                 @csrf

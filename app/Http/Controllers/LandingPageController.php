@@ -59,7 +59,6 @@ class LandingPageController extends Controller
             'user_id' => 'required',
             'book_id' => 'required',
             'tanggal_pinjam' => 'required|date',
-            'tanggal_pengembalian' => 'required|date|after_or_equal:tanggal_pinjam',
         ]);
 
         $tanggalPinjam = Carbon::parse($request->tanggal_pinjam);
@@ -69,7 +68,6 @@ class LandingPageController extends Controller
         $peminjaman = new Peminjaman();
         $peminjaman->user_id = $request->user_id;
         $peminjaman->book_id = $request->book_id;
-        $peminjaman->tanggal_pengembalian = $tanggalKembali;
         $peminjaman->tanggal_pinjam = $tanggalPinjam;
         $peminjaman->tanggal_wajib_kembali = $tanggalWajibKembali;
         $peminjaman->save();

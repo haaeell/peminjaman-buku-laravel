@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Models\Role;
 use App\Models\Peminjaman;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -49,5 +51,8 @@ class User extends Authenticatable
 {
     return $this->hasMany(Peminjaman::class)->count();
 }
-
+public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
 }

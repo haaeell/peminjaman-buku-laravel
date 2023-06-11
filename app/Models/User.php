@@ -51,6 +51,12 @@ class User extends Authenticatable
 {
     return $this->hasMany(Peminjaman::class)->count();
 }
+
+public function peminjamans()
+{
+    return $this->hasMany(Peminjaman::class, 'user_id');
+}
+
 public function role()
     {
         return $this->belongsTo(Role::class);

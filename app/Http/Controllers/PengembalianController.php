@@ -14,13 +14,15 @@ class PengembalianController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-{
-    $pengembalians = Peminjaman::where('approved', true)
-        ->orderBy('id', 'desc')
-        ->get();
-
-    return view('pengembalian.index', compact('pengembalians'));
-}
+    {
+        $pengembalians = Peminjaman::where('approved', true)
+            ->orderByRaw("CASE WHEN status = 'sedang dipinjam' THEN 0 ELSE 1 END")
+            ->orderBy('id', 'desc')
+            ->get();
+    
+        return view('pengembalian.index', compact('pengembalians'));
+    }
+    
 
 
 
@@ -75,6 +77,7 @@ class PengembalianController extends Controller
 
         $pengembalian->tanggal_pengembalian = $tanggalPengembalian;
         $pengembalian->denda = 0;
+        $pengembalian->status = 'dikembalikan';
 
         if ($tanggalPengembalian->greaterThan($pengembalian->tanggal_wajib_kembali)) {
             $selisihHari = $tanggalPengembalian->diffInDays($pengembalian->tanggal_wajib_kembali);

@@ -47,6 +47,7 @@
                                 <th>Tanggal Pinjam</th>
                                 <th>Tanggal Wajib Kembali</th>
                                 <th>Tanggal Pengembalian</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -58,9 +59,10 @@
                                     <td> <img src="{{ asset('/public/posts/' . $peminjaman->book->image) }}"
                                             style="width: 80px;" alt=""></td>
                                     <td>{{ $peminjaman->book->title }}</td>
-                                    <td>{{ $peminjaman->tanggal_pinjam }}</td>
-                                    <td>{{ $peminjaman->tanggal_wajib_kembali }}</td>
-                                    <td>{{ $peminjaman->tanggal_pengembalian }}</td>
+                                    <td>{{ Carbon\Carbon::parse($peminjaman->tanggal_pinjam)->formatLocalized('%d %B %Y') }}</td>
+                                    <td>{{ Carbon\Carbon::parse($peminjaman->tanggal_wajib_kembali)->formatLocalized('%d %B %Y') }}</td>
+                                    <td>{{ Carbon\Carbon::parse($peminjaman->tanggal_pengembalian)->formatLocalized('%d %B %Y') }}</td>
+                                    <td>{{ $peminjaman->status}}</td>
                                     <td>
                                         <div class="d-flex">
                                             @if (!$peminjaman->approved)

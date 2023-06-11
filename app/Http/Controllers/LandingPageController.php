@@ -38,46 +38,52 @@ class LandingPageController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        // Ambil ID pengguna saat ini
-        $userId = Auth::user()->id;
-    
-        // Ambil pengguna saat ini berdasarkan ID
-        $user = User::find($userId);
-    
-        // Tentukan batasan jumlah maksimum peminjaman
-        $maxPeminjaman = 3;
-    
-        // Lakukan validasi
-        if ($user->peminjamanCount() >= $maxPeminjaman) {
-            // Jika melebihi batas, kembalikan pesan kesalahan
-            return back()->with('error', 'Anda telah mencapai batas maksimum peminjaman buku.');
-        }
-    
-        $request->validate([
-            'user_id' => 'required',
-            'book_id' => 'required',
-            'tanggal_pinjam' => 'required|date',
-        ]);
-    
-        $tanggalPinjam = Carbon::parse($request->tanggal_pinjam);
-        $tanggalKembali = Carbon::parse($request->tanggal_pengembalian);
-        $tanggalWajibKembali = $tanggalPinjam->copy()->addWeek();
-    
-        $peminjaman = new Peminjaman();
-        $peminjaman->user_id = $request->user_id;
-        $peminjaman->book_id = $request->book_id;
-        $peminjaman->tanggal_pinjam = $tanggalPinjam;
-        $peminjaman->tanggal_wajib_kembali = $tanggalWajibKembali;
-        $peminjaman->save();
-    
-        // Mengurangi stok buku
-        $book = Book::find($request->book_id);
-        $book->stok -= 1;
-        $book->save();
-    
-        return back()->with('success', 'Pengajuan berhasil, tunggu konfirmasi dari admin melalui email!');
+{
+    // Ambil ID pengguna saat ini
+    $userId = Auth::user()->id;
+
+    // Ambil pengguna saat ini berdasarkan ID
+    $user = User::find($userId);
+
+    // Tentukan batasan jumlah maksimum peminjaman
+    $maxPeminjaman = 3;
+
+    // Lakukan validasi
+    $countPeminjaman = $user->peminjamans()
+        ->whereIn('status', ['sedang dipinjam', 'menunggu persetujuan admin'])
+        ->count();
+
+    if ($countPeminjaman >= $maxPeminjaman) {
+        // Jika melebihi batas, kembalikan pesan kesalahan
+        return back()->with('error', 'Anda telah mencapai batas maksimum peminjaman buku.');
     }
+
+    $request->validate([
+        'user_id' => 'required',
+        'book_id' => 'required',
+        'tanggal_pinjam' => 'required|date',
+    ]);
+
+    $tanggalPinjam = Carbon::parse($request->tanggal_pinjam);
+    $tanggalKembali = Carbon::parse($request->tanggal_pengembalian);
+    $tanggalWajibKembali = $tanggalPinjam->copy()->addWeek();
+
+    $peminjaman = new Peminjaman();
+    $peminjaman->user_id = $request->user_id;
+    $peminjaman->book_id = $request->book_id;
+    $peminjaman->tanggal_pinjam = $tanggalPinjam;
+    $peminjaman->tanggal_wajib_kembali = $tanggalWajibKembali;
+    $peminjaman->status = 'menunggu persetujuan admin'; // Atur status peminjaman
+    $peminjaman->save();
+
+    // Mengurangi stok buku
+    $book = Book::find($request->book_id);
+    $book->stok -= 1;
+    $book->save();
+
+    return back()->with('success', 'Pengajuan berhasil, tunggu konfirmasi dari admin melalui email!');
+}
+
     
     /**
      * Display the specified resource.

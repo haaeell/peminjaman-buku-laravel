@@ -15,11 +15,14 @@ class RiwayatController extends Controller
     public function index()
 {
     $user = Auth::user();
-    $peminjamans = Peminjaman::where('user_id', $user->id)->get();
+    $peminjamans = Peminjaman::where('user_id', $user->id)
+        ->orderBy('created_at', 'desc')
+        ->get();
     $categories = Category::all();
 
     return view('landingpage.riwayat', compact('peminjamans', 'categories'));
 }
+
 
 
     /**

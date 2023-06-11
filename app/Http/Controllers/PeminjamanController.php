@@ -130,6 +130,7 @@ class PeminjamanController extends Controller
 
     $peminjaman = Peminjaman::findOrFail($id);
     $peminjaman->approved = true;
+    $peminjaman->status = 'sedang dipinjam';
     $peminjaman->save();
 
     // Mengirim email notifikasi ke peminjam

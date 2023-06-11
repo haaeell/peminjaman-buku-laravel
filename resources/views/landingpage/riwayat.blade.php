@@ -18,7 +18,7 @@
     <h4 class="text-center mt-2 fw-bold">RIWAYAT PEMINJAMAN</h4>
     <div class="row mt-5">
         <div class="col-md-12">
-            <div class="card border-0 shadow-md p-3">
+            <div class="card p-3">
                 <div class="card-body  p-0">
                     <div class="table-responsive ">
                         <table class="table table-hovered" id="table_id">
@@ -32,7 +32,8 @@
                                     <th>Tanggal Wajib Kembali</th>
                                     <th>Tanggal Pengembalian</th>
                                     <th>Denda</th>
-                                    <th>Action</th>
+                                    <th>Status buku</th>
+                                    <th>Status admin</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,13 +44,23 @@
                                         <td> <img src="{{ asset('/public/posts/' . $peminjaman->book->image) }}"
                                                 style="width: 80px;" alt=""></td>
                                         <td>{{ $peminjaman->book->title }}</td>
-                                        <td>{{ $peminjaman->tanggal_pinjam }}</td>
-                                        <td>{{ $peminjaman->tanggal_wajib_kembali }}</td>
+                                        <td>{{ Carbon\Carbon::parse($peminjaman->tanggal_pinjam)->formatLocalized('%d %B %Y') }}</td>
+                                        <td>{{ Carbon\Carbon::parse($peminjaman->tanggal_wajib_kembali)->formatLocalized('%d %B %Y') }}</td>
                                         <td>
-                                            {{ $peminjaman->tanggal_pengembalian ? $peminjaman->tanggal_pengembalian : 'Belum Dikembalikan' }}
+                                            {{ $peminjaman->tanggal_pengembalian ? Carbon\Carbon::parse($peminjaman->tanggal_pengembalian)->formatLocalized('%d %B %Y')  : 'Belum Dikembalikan' }}
                                         </td>
                                         
                                         <td>Rp. {{ number_format($peminjaman->denda, 0, ',', '.') }}</td>
+                                        <td>
+                                            @if ($peminjaman->status == 'menunggu persetujuan admin')
+                                                <span class="fw-bold text-danger">{{ $peminjaman->status }}</span>
+                                            @elseif ($peminjaman->status == 'sedang dipinjam')
+                                                <span class="fw-bold text-success">{{ $peminjaman->status }}</span>
+                                            @else
+                                                <span class="fw-bold">{{ $peminjaman->status }}</span>
+                                            @endif
+                                        </td>
+                                        
                                         <td>
                                             
                                             @if ($peminjaman->approved == 1)

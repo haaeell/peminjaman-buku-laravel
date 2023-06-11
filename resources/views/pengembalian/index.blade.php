@@ -33,6 +33,7 @@
                                 <th>Tanggal Pinjam</th>
                                 <th>Tanggal Wajib Kembali</th>
                                 <th>Tanggal Pengembalian</th>
+                                <th>Status</th>
                                 <th>Denda</th>
                                 <th>Action</th>
                             </tr>
@@ -56,6 +57,7 @@
                                             Belum Dikembalikan
                                         @endif
                                     </td>
+                                    <td>{{ $pengembalian->status }}</td>
                                     
 
                                     <td>Rp.{{ number_format($pengembalian->denda, 0, ',', '.') }}</td>
@@ -64,8 +66,6 @@
                                             @if ($pengembalian->tanggal_pengembalian == null)
                                             <a href="{{ route('pengembalian.edit', $pengembalian->id) }}"
                                                 class="btn btn-warning mr-1">pengembalian</a> 
-                                            @else
-                                            <span class="badge badge-success mr-1">Sudah Dikembalikan</span> 
                                             @endif
                                             
                                             <form method="POST"

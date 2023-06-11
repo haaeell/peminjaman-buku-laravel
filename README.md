@@ -44,6 +44,18 @@
 
    ![Landing Page](dokumentasi/landingpage.png)
 
+2. Login Modal
+
+   ![Login Modal](dokumentasi/login.png)
+
+3. Detail buku dan form peminjaman menggunakan modal (user)
+
+   ![Login Modal](dokumentasi/detail.png)
+
+4. Riwayat Peminjaman (user)
+
+   ![Login Modal](dokumentasi/riwayat2.png)
+
 2. Halaman Table Books (admin)
 
    ![Table Books](dokumentasi/books.png)
@@ -58,15 +70,13 @@
 
 5. Halaman Table Peminjaman (admin)
 
-   ![Table Peminjaman](dokumentasi/peminjaman.png)
+   ![Table Peminjaman](dokumentasi/peminjaman2.png)
 
 6. Halaman Table Pengembalian (admin)
 
-   ![Table Pengembalian](dokumentasi/pengembalian.png)
+   ![Table Pengembalian](dokumentasi/pengembalian2.png)
 
-7. Login Modal
 
-   ![Login Modal](dokumentasi/login.png)
 
 8. Halaman Table User
 

@@ -10,7 +10,8 @@
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
 />
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <link rel="stylesheet" href="{{asset('./css/app.css')}}">
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
@@ -43,7 +44,7 @@
             <ul class="dropdown-menu">
                 @foreach($categories as $category)
                 <li>
-                    <a class="dropdown-item" href="#">{{$category->name}}</a>
+                    <a class="dropdown-item" href="#{{$category->name}}">{{$category->name}}</a>
                 </li>
                 @endforeach
             </ul>
@@ -180,31 +181,82 @@
 </script>
 <script>
     var swiper = new Swiper(".mySwiper", {
-      // loop: true,
-      initialSlide: 2,
-      grabCursor: true,
-      centeredSlides: true,
-      slidesPerView: "auto",
-      coverflowEffect: {
-        rotate: 0,
-        stretch: 0,
-        depth: 100,
-        modifier: 1,
-        slideShadows: true,
-      },
+      slidesPerView: 6,
+      loop: true,
+      spaceBetween: 30,
       pagination: {
         el: ".swiper-pagination",
+        clickable: true,
       },
+      navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        autoplay: {
+        delay: 2000, // Durasi antara perpindahan slide dalam milidetik
+        disableOnInteraction: false, // Jangan menghentikan autoplay saat interaksi pengguna
+  },
     });
-    document.querySelector(".swiper-button-next").addEventListener("click", function () {
-  swiper.slideNext();
-});
-
-document.querySelector(".swiper-button-prev").addEventListener("click", function () {
-  swiper.slidePrev();
-});
-
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#searchButton').click(function() {
+            searchBooks();
+        });
+
+        $('#searchInput').keyup(function(event) {
+            if (event.keyCode === 13) {
+                searchBooks();
+            }
+        });
+
+        function searchBooks() {
+            var searchQuery = $('#searchInput').val();
+
+            $.ajax({
+                url: '{{ route('book.search') }}',
+                method: 'GET',
+                data: { query: searchQuery },
+                beforeSend: function() {
+                    $('#searchResults').html('<p class="text-center">Tunggu sebentar...</p>');
+                },
+                success: function(response) {
+                    $('#searchResults').html(response);
+                },
+                error: function() {
+                    $('#searchResults').html('<p class="text-center">Search nya jangan kosong bang!</p>');
+                }
+            });
+        }
+    });
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $(".owl-carousel").owlCarousel({
+        items: 6,
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 3000,
+        autoplayHoverPause: true,
+        margin: 40,
+        dots: true,
+        responsive:{
+        0:{
+            items:3
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:6
+        }
+    }
+      });
+    });
+  </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>

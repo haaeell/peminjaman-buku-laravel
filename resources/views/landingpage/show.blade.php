@@ -170,7 +170,76 @@
     </div>
     
     </div>
-
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header border-0 d-flex justify-content-end">
+              <button type="button" class="btn btn-modal rounded-circle" data-bs-dismiss="modal" aria-label="Close">x</button>
+            </div>
+            <div class="d-flex justify-content-center  mb-2">
+              <h1 class="modal-title fw-semibold text-center fs-5 mb-3" id="exampleModalLabel">Login to your account!</h1>
+            </div>
+            <div class="modal-body">
+              <form method="POST" action="{{ route('login') }}">
+                @csrf
+                <div class="row mb-3 d-flex justify-content-center align-items-center">
+                    <div class="col-md-11">
+                        <input id="email" placeholder="Email" type="email" class=" form-control px-4 py-3 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" >
+      
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+      
+                <div class="row mb-3 d-flex justify-content-center align-items-center">
+                    <div class="col-md-11">
+                        <input id="password" placeholder="Password" type="password" class="form-control px-4 py-3 @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+      
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+      
+                <div class="row mb-3 d-flex justify-content-center">
+                  <div class="col-md-5">
+                      <div class="form-check">
+                          <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                          <small class="form-check-label" for="remember">
+                              Remember Email
+                          </small>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <a href="#" class="text-danger float-end"> <small>Kehilangan Password</small> </a>
+                  </div>
+              </div>
+              
+                <div class="row mb-5 d-flex justify-content-center">
+                  <div class="col-md-11">
+                    <button type="submit" class="btn btn-register p-3 mb-5 w-100">Masuk</button>
+                    <small class="form-check-label mt-5" >
+                      Log in menggunakan akun anda pada:
+                  </small>
+                  <div class="mt-auto">
+                    <button type="button" class="btn btn-secondary w-100 mt-2 p-3">
+                      <img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-google-icon-logo-png-transparent-svg-vector-bie-supply-14.png" class="rounded-circle" style="width:30px;height:30px; background-color:white;padding:5px;" alt=""> Google
+                    </button>
+                  </div>
+      
+                  </div>
+                </div>
+            </div>
+        
+          </form>
+          </div>
+        </div>
+      </div>
     <!-- Modal -->
 <div class="modal fade" id="modalPinjam" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -224,4 +293,6 @@
         </div>
     </div>
 </div>
+
+
 @endsection

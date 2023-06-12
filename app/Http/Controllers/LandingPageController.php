@@ -9,6 +9,7 @@ use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 
 class LandingPageController extends Controller
 {
@@ -120,4 +121,16 @@ class LandingPageController extends Controller
     {
         //
     }
+    public function search(Request $request)
+{
+    $query = $request->input('query');
+    $books = [];
+
+    if ($query) {
+        $books = Book::where('title', 'LIKE', '%' . $query . '%')->get();
+    }
+
+    return view('books.search_results', compact('books'));
+}
+
 }

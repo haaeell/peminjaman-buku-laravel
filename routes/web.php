@@ -24,7 +24,9 @@ use App\Http\Controllers\PengembalianController;
 
 Route::resource('/', LandingPageController::class);
 Route::resource('landingpage', LandingPageController::class);
-Route::resource('riwayat', RiwayatController::class);
+Route::resource('riwayat', RiwayatController::class)->middleware('auth');
+Route::get('/search', [LandingPageController::class, 'search'])->name('book.search');
+
 
 
 

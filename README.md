@@ -48,6 +48,10 @@
 
    ![Login Modal](dokumentasi/login.png)
 
+3. Login Modal
+
+   ![Login Modal](dokumentasi/daftarbuku.png)
+
 3. Detail buku dan form peminjaman menggunakan modal (user)
 
    ![Login Modal](dokumentasi/detail.png)

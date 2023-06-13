@@ -45,7 +45,7 @@
 
 1. Landing Page (sementara)
 
-   ![Landing Page](dokumentasi/landingpage#2.png)
+   ![Landing Page](dokumentasi/landingpage1.png)
 
 2. Login Modal
 

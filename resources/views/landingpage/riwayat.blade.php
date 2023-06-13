@@ -14,7 +14,7 @@
     </div>
 @endif
 
-<div class="container">
+<div class="container vh-100">
     <h4 class="text-center mt-2 fw-bold">RIWAYAT PEMINJAMAN</h4>
     <div class="row mt-5">
         <div class="col-md-12">

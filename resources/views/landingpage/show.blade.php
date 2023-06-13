@@ -162,6 +162,29 @@
                     </div>
                 </div>
             </div>
+            <div class="modal fade" id="replyModal{{ $comment->id }}" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel{{ $comment->id }}" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="replyModalLabel{{ $comment->id }}">Balas Komentar</h5>
+                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ route('comments.store') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="book_id" value="{{ $book->id }}">
+                                <input type="hidden" name="parent_id" value="{{ $comment->id }}">
+                                <input type="hidden" name="user_id" value="{{ auth()->id() }}">
+                                <div class="mb-3">
+                                    <label for="replyContent{{ $comment->id }}" class="form-label">Reply to this comment</label>
+                                    <input type="text" class="form-control" id="replyContent{{ $comment->id }}" name="content" placeholder="Reply to this comment">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Reply</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
             @endforeach
             <div class="mt-3">
                 <form action="{{ route('comments.store') }}" method="post">
@@ -170,7 +193,24 @@
                     <input type="hidden" name="parent_id" value="">
                     <input type="hidden" name="user_id" value="{{ auth()->id() }}">
                     <textarea class="form-control" rows="4" name="content" placeholder="Komentar disini cok"></textarea>
-                    <button type="submit" class="btn btn-register btn-sm mt-3">Komentar</button>
+                    @if (Auth::check())
+                        <button type="submit" class="btn btn-register btn-sm mt-3">Komentar</button>
+                    @else  
+                    <button type="button" class="btn btn-register mt-3"
+                    onclick="Swal.fire({
+                        icon: 'warning',
+                        title: 'Anda belum login',
+                        text: 'Silahkan login terlebih dahulu',
+                        showCancelButton: true,
+                        confirmButtonText: 'OK',
+                        cancelButtonText: 'Batal',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = '{{ route('login') }}';
+                        }
+                    })">Pinjam
+                    Buku</button> 
+                    @endif
                 </form>               
             </div>
         </div>
@@ -179,29 +219,7 @@
     </div>
 
     
-    <div class="modal fade" id="replyModal{{ $comment->id }}" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel{{ $comment->id }}" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="replyModalLabel{{ $comment->id }}">Balas Komentar</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('comments.store') }}" method="post">
-                        @csrf
-                        <input type="hidden" name="book_id" value="{{ $book->id }}">
-                        <input type="hidden" name="parent_id" value="{{ $comment->id }}">
-                        <input type="hidden" name="user_id" value="{{ auth()->id() }}">
-                        <div class="mb-3">
-                            <label for="replyContent{{ $comment->id }}" class="form-label">Reply to this comment</label>
-                            <input type="text" class="form-control" id="replyContent{{ $comment->id }}" name="content" placeholder="Reply to this comment">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Reply</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">

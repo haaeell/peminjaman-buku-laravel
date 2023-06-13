@@ -1,9 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PeminjamanController;
@@ -25,7 +28,10 @@ use App\Http\Controllers\PengembalianController;
 Route::resource('/', LandingPageController::class);
 Route::resource('landingpage', LandingPageController::class);
 Route::resource('riwayat', RiwayatController::class)->middleware('auth');
+Route::resource('comments', CommentController::class)->middleware('auth');
 Route::get('/search', [LandingPageController::class, 'search'])->name('book.search');
+Route::post('/comments/{comment}/like-toggle', [CommentController::class, 'likeToggle'])->name('comments.like.toggle');
+
 
 
 

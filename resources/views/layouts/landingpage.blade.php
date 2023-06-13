@@ -91,6 +91,16 @@
   </nav>
 
  @yield('content')
+ <div id="loading-spinner" class="loading-spinner">
+  <div class="spinner"></div>
+</div>
+
+
+ <footer class="puter text-center">
+  <div class="container py-3">
+    <span class="fw-semibold">&copy; {{ date('Y') }} Ini Footer. All rights reserved.</span>
+  </div>
+</footer>
  <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -180,6 +190,18 @@
 
 </script>
 <script>
+  // Tampilkan loading spinner saat halaman dimuat
+window.addEventListener('beforeunload', function() {
+    document.getElementById('loading-spinner').style.display = 'flex';
+});
+
+// Sembunyikan loading spinner setelah halaman selesai dimuat
+window.addEventListener('load', function() {
+    document.getElementById('loading-spinner').style.display = 'none';
+});
+
+</script>
+<script>
     var swiper = new Swiper(".mySwiper", {
       slidesPerView: 6,
       loop: true,
@@ -219,13 +241,17 @@
                 method: 'GET',
                 data: { query: searchQuery },
                 beforeSend: function() {
-                    $('#searchResults').html('<p class="text-center">Tunggu sebentar...</p>');
+                    $('#searchResults').html(`
+                    <div class="d-flex justify-content-center">
+                      <p class="mx-3">Tunggu...  </p>
+                        <div class="spinner"></div>
+                    </div>`);
                 },
                 success: function(response) {
                     $('#searchResults').html(response);
                 },
                 error: function() {
-                    $('#searchResults').html('<p class="text-center">Search nya jangan kosong bang!</p>');
+                    $('#searchResults').html('<p class="text-center text-danger">Search nya jangan kosong bang!</p>');
                 }
             });
         }
@@ -233,6 +259,16 @@
 </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script>
+    $(document).ready(function() {
+        // Memberikan perilaku pada link Balas untuk membuka modal
+        $('.reply-toggle').click(function(e) {
+            e.preventDefault();
+            var target = $(this).data('bs-target');
+            $(target).modal('show');
+        });
+    });
+  </script>
   <script>
     $(document).ready(function(){
       $(".owl-carousel").owlCarousel({

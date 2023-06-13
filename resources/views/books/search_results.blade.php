@@ -23,5 +23,5 @@
 </div>
 
 @else
-    <p class="text-center">Buku Tidak Ada</p>
+    <p class="text-center">-- Buku Tidak Ada --</p>
 @endif

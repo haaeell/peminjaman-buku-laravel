@@ -82,7 +82,7 @@
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <div class="card border-0 p-5" style="box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;">
+                    <div class="card border-0 p-5" >
 
                         <h4 class="fw-bold text-center mb-5" style="color: #124472;"> <i>Buku Terlaris Bulan ini</i> </h4>
                         <div class="row d-flex justify-content-center text-center mb-3">
@@ -132,7 +132,7 @@
     </section>
     {{-- END BUKU --}}
     {{-- CARA MEMINJAM --}}
-    <section class="vh-100">
+    <section>
         <div class="container">
             <h3 class="fw-bold text-center mb-5">Cara Meminjam Buku</h3>
             <div class="row d-flex justify-content-center" style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
@@ -215,5 +215,68 @@
             </div>
         </div>
     </section> --}}
+    <section>
+        <div class="container py-5 my-5">
+            <h4 class="text-center  fw-bold  mb-5">TESTIMONI ORANG - ORANG</h4>
+            <div class="row d-flex justify-content-center align-items-center ">
+                <div class="col-md-4">
+                    <div class="card blur shadow-card border-1 p-4" >
+                        <div class="d-flex justify-content-center mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="card-text text-center">" Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+                        <div class="d-flex align-items-center justify-content-start mt-3">
+                            <img src="{{ asset('stisla/assets') }}/img/avatar/avatar-5.png" class="rounded-circle me-3" alt="Profile Picture" style="width: 40px; height: 40px;">
+                            <div class="d-flex flex-column">
+                                <h5 class="fw-semibold text-center mb-0">Nama Pengguna</h5>
+                                <span class="text-start" style="font-size: 13px;">12 November 2023</span>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 card shadow-card" >
+                        <div class="d-flex justify-content-center mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star-half text-warning"></i>
+                        </div>
+                        <p class="card-text text-center">" Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, tempore ut. Delectus
+                            "</p>
+                        <div class="d-flex align-items-center justify-content-start mt-2">
+                            <img src="{{ asset('stisla/assets') }}/img/avatar/avatar-5.png" class="rounded-circle me-3" alt="Profile Picture" style="width: 40px; height: 40px;">
+                            <div class="d-flex flex-column">
+                                <h5 class="fw-semibold text-start mb-0">Haikal</h5>
+                                <span class="text-start" style="font-size: 13px;">12 November 2023</span>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card blur border-1 p-4 shadow-card">
+                        <div class="d-flex justify-content-center mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="card-text text-center">" Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+                        <div class="d-flex align-items-center justify-content-start mt-3">
+                            <img src="{{ asset('stisla/assets') }}/img/avatar/avatar-5.png" class="rounded-circle me-3" alt="Profile Picture" style="width: 40px; height: 40px;">
+                            <div class="d-flex flex-column">
+                                <h5 class="fw-semibold text-center mb-0">Nama Pengguna</h5>
+                                <span class="text-start" style="font-size: 13px;">12 November 2023</span>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     
 @endsection

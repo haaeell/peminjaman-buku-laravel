@@ -12,10 +12,12 @@
 6. Jika belum login, pengguna tidak dapat meminjam buku dan akan menerima notifikasi serta diarahkan ke halaman login.
 7. Terdapat stok buku. Jika stok buku habis, buku tersebut tidak dapat dipinjam.
 8. User hanya dapat melihat dan meminjam buku.
-9. Maksimal peminjaman adalah 3 hari dan maksimal peminjaman untuk setiap buku adalah 7 hari. Jika melebihi batas tersebut, akan dikenakan denda sebesar Rp1.000 per hari.
+9. Maksimal buku yang sedang dipinjam adalah 3 buku . batas waktu peminjaman untuk setiap buku adalah 7 hari. Jika melebihi batas tersebut, akan dikenakan denda sebesar Rp1.000 per hari.
 10. Ketika user berhasil meminjam buku, akan menunggu konfirmasi dari admin melalui email.
 11. Jika admin menyetujui peminjaman buku, status peminjaman akan berubah menjadi "disetujui" dan secara otomatis akan dikirimkan email ke user.
 12. Tersedia fitur riwayat peminjaman untuk user agar dapat melihat buku-buku yang telah dipinjam dan tanggal pengembalian.
+13. User dapat menggunakan fitur live search di halaman daftar buku untuk mencari judul buku dan kategori
+13. User dapat menambahkan dan membalas komentar pada bagian detail buku
 
 ## Tools
 
@@ -30,6 +32,7 @@
 - Select2
 - CKEditor
 - Swiper.js
+- AOS
 - MySQL
 - Laragon
 - DBeaver
@@ -42,13 +45,13 @@
 
 1. Landing Page (sementara)
 
-   ![Landing Page](dokumentasi/landingpage.png)
+   ![Landing Page](dokumentasi/landingpage#2.png)
 
 2. Login Modal
 
    ![Login Modal](dokumentasi/login.png)
 
-3. Login Modal
+3. Halaman daftar buku
 
    ![Login Modal](dokumentasi/daftarbuku.png)
 
